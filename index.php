@@ -1,5 +1,5 @@
 <?php
-require(ABSPATH . 'wp-blog-header.php');
+require('path/to/wp-blog-header.php');
 require_once( ABSPATH . WPINC . '/rss-functions.php' );
 include_once( 'life.php' );
 ini_set( "display_errors", 0);
