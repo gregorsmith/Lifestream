@@ -1,6 +1,6 @@
 <?php
 
-include_once (ABSPATH . 'wp-blog-header.php');
+include_once ('path/to/wp-blog-header.php');
 
 class life {
 
