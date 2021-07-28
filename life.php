@@ -1,6 +1,6 @@
 <?php
 
-include_once ('path/to/wp-blog-header.php');
+include_once ("blog/wp-config.php");
 
 class life {
 
@@ -10,10 +10,12 @@ function defaultStreams() {
 	return array( 
 		'life_blog' => '',
 		'life_flickr' => '',
+		'life_lastfm' => '',
 		'life_twitter' => '',
 		'life_facebook' => '',
-		'life_lastfm' => '',
 		'life_foursquare' => '',
+		'life_instagram' => '',
+		'life_youtube' => '',
 		);
 }
 
@@ -24,34 +26,6 @@ function checkStreams() {
 	}
 }
 
-function install() {
-	add_option( 'life_installed', '1', "" );
-	add_option( 'life_version', '1.0', "");
-	foreach ( self::defaultStreams() as $key => $value ) {
-		add_option( $key, $value, "" );
-	}
-	echo 'Installed, ready to go.';
-}
-
-function upgrade() {
-	foreach ( self::defaultStreams() as $key => $value ) {
-		if( !get_option( $key ) ) {
-		add_option( $key, $value, "" );
-		echo 'Added ' . $key;
-		}
-	}
-}
-
-function loadStreams() {
-	foreach( self::defaultStreams() as $key => $value ) {
-	// find the values for each of our streams (RSS Feeds)
-		if( get_option( $value ) ) {
-			$value = get_option(  $value );
-		} else {
-			echo '<p>' . $key . ': ' . $value . ' not found in the database.</p>';
-		}
-	}
-}
 }
 
 life::checkStreams();

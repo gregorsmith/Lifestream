@@ -1,0 +1,96 @@
+
+/*
+Theme Name: Life Stream
+Theme URI: http://www.gregorsmith.com
+Description: The index page for gregorsmith.com
+Version: 2.0
+Author: Gregor Smith
+*/
+
+@function set-background-color($color) {
+    @if (lightness($color) > 40) {
+      @return #333333;
+    }
+    @else {
+      @return #ffffff;
+    }
+}
+
+img {
+  max-width: 24px;
+  max-height: 24px;
+}
+
+p a {
+  color: set-background-color(white);
+  font-weight: bold;
+  &:hover {
+    text-decoration: underline;
+    color: set-background-color(white);
+  }
+}
+
+// Define Feed Colours
+
+$colours:
+blog #8a8472,
+flickr #0063dc,
+twitter #1da1f2,
+facebook #1877f2,
+lastfm #d51007,
+foursquare #f94877,
+instagram #f56040,
+youtube #ff0000,
+lifestream #ffffff;
+
+@each $feed, $hex in $colours {
+  .life_#{$feed} {
+    th.life_time, td.life_post {
+      background: lighten( $hex, 25% );
+      color: set-background-color($hex);
+      a {
+        background: lighten( $hex, 25% );
+        color: set-background-color($hex);
+        &:hover {
+          background: #eeeeee;
+          text-decoration: none;
+          color: #333333;
+        }
+        &:visited:hover {
+          color: #333333;
+        }
+      }
+    }
+  }
+}
+
+thead {
+  th.life_date {
+    padding: 0rem;
+  }
+}
+
+tbody {
+  td.life_logo {
+    width: 40px;
+    height: 40px;
+  }
+  th.life_time {
+    text-align: center;
+    font-weight: normal;
+  }
+  td.life_post {
+    padding: 0rem;
+    a {
+      display: block;
+      text-decoration: none;
+      padding: 0.5rem;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .footer {
+      font-size: 0.75rem;
+    }
+}
